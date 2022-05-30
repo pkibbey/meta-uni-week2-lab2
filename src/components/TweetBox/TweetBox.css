@@ -90,3 +90,7 @@
   margin-top: 5px;
   font-size: 20px;
 }
+
+.tweet-length.tweet-error {
+  color: red;
+}

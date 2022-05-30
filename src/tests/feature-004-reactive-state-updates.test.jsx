@@ -48,6 +48,7 @@ export function testReactiveStateUpdates(App) {
       const { container } = render(<App />)
 
       const tweetTextArea = customQueries.getTweetTextArea(container)
+      console.log('tweetTextArea: ', tweetTextArea, tweetTextArea.value);
       const tweetSubmitButton = customQueries.getTweetSubmitButton(container, within)
       const tweetFooter = customQueries.getTweetBoxFooter(container)
 
