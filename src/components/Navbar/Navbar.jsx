@@ -6,7 +6,7 @@ export default function Navbar({ navLinks }) {
   return (
     <nav>
       <div className="navbar-container">
-        <NavLinks />
+        {navLinks.map(navLink => <NavLink key={navLink.label} navLink={navLink} />)}
         <TwitterIcon />
         <SearchBar />
         <TweetButton />
@@ -23,7 +23,7 @@ export function NavLink({ navLink }) {
   return (
     <li className={navLink.className}>
       <i className={navLink.icon}></i>
-      <span></span>
+      <span>{navLink.label}</span>
     </li>
   )
 }

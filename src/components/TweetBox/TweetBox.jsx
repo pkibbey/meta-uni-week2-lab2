@@ -2,15 +2,30 @@ import * as React from "react"
 import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
-export default function TweetBox(props) {
+export default function TweetBox({ setTweets, userProfile, tweetText, setTweetText}) {  
+  const handleOnTweetTextChange = (e) => setTweetText(e.target.value)
+
+  const handleOnSubmit = () => {
+    setTweets(tweets => [...tweets, {
+      comments: 0,
+      handle: userProfile.handle,
+      id: tweets.length,
+      likes: 0,
+      name: userProfile.name,
+      retweets: 0,
+      text: tweetText
+    }])
+    setTweetText('')
+  }
+
   return (
     <div className="tweet-box">
-      <TweetInput />
+      <TweetInput handleOnChange={handleOnTweetTextChange} value={tweetText} />
 
       <div className="tweet-box-footer">
         <TweetBoxIcons />
-        <TweetCharacterCount />
-        <TweetSubmitButton />
+        <TweetCharacterCount count={tweetText.length} />
+        <TweetSubmitButton handleOnSubmit={handleOnSubmit} />
       </div>
     </div>
   )
@@ -27,16 +42,15 @@ export function TweetBoxIcons() {
   )
 }
 
-export function TweetCharacterCount(props) {
-  // ADD CODE HERE
-  return <span></span>
+export function TweetCharacterCount({ count }) {
+  return <span>{count}</span>
 }
 
-export function TweetSubmitButton() {
+export function TweetSubmitButton({ handleOnSubmit }) {
   return (
     <div className="tweet-submit">
       <i className="fas fa-plus-circle"></i>
-      <button className="tweet-submit-button">Tweet</button>
+      <button className="tweet-submit-button" onClick={handleOnSubmit}>Tweet</button>
     </div>
   )
 }
