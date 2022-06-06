@@ -3,7 +3,6 @@ import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
 export default function TweetBox({ setTweets, userProfile, tweetText, setTweetText}) {  
-  console.log('tweetText: ', tweetText.length);
   const handleOnTweetTextChange = (e) => setTweetText(e.target.value)
 
   const handleOnSubmit = () => {
@@ -26,7 +25,7 @@ export default function TweetBox({ setTweets, userProfile, tweetText, setTweetTe
       <div className="tweet-box-footer">
         <TweetBoxIcons />
         <TweetCharacterCount count={140 - tweetText.length} />
-        <TweetSubmitButton count={tweetText.length} handleOnSubmit={handleOnSubmit} />
+        <TweetSubmitButton count={tweetText.length} handleOnSubmit={() => handleOnSubmit()} />
       </div>
     </div>
   )
@@ -53,7 +52,7 @@ export function TweetSubmitButton({ handleOnSubmit, count }) {
       <i className="fas fa-plus-circle"></i>
       <button 
         className="tweet-submit-button" 
-        onClick={handleOnSubmit}
+        onClick={() => handleOnSubmit()}
         disabled={count === 0 || count > 140}
       >Tweet</button>
     </div>
