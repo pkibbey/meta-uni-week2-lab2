@@ -1,7 +1,7 @@
-import * as React from "react"
-import AvatarIcon from "../AvatarIcon/AvatarIcon"
-import { formatLikes } from "../../utils/format"
-import "./Tweet.css"
+import * as React from 'react';
+import AvatarIcon from '../AvatarIcon/AvatarIcon';
+import { formatLikes } from '../../utils/format';
+import './Tweet.css';
 
 export default function Tweet({ tweet }) {
   return (
@@ -13,10 +13,14 @@ export default function Tweet({ tweet }) {
       <div className="tweet-content">
         <TweetUserInfo name={tweet.name} handle={tweet.handle} />
         <p className="tweet-text">{tweet.text}</p>
-        <TweetFooter numComments={tweet.comments} numRetweets={tweet.retweets} numLikes={tweet.likes} />
+        <TweetFooter
+          numComments={tweet.comments}
+          numRetweets={tweet.retweets}
+          numLikes={tweet.likes}
+        />
       </div>
     </div>
-  )
+  );
 }
 
 export function TweetUserInfo({ name, handle }) {
@@ -24,33 +28,36 @@ export function TweetUserInfo({ name, handle }) {
     <div className="tweet-user-info">
       <div className="meta">
         <p className="name">{name}</p>
-        <span className="handle">@{handle}</span>
+        <span className="handle">
+          @
+          {handle}
+        </span>
         <span className="dot">•</span>
         <span className="ts">1 min</span>
       </div>
-      <i className="fa fa-angle-down"></i>
+      <i className="fa fa-angle-down" />
     </div>
-  )
+  );
 }
 
 export function TweetFooter({ numComments, numRetweets, numLikes }) {
   return (
     <div className="tweet-footer">
       <span>
-        <i className="fa fa-comment"></i>
+        <i className="fa fa-comment" />
         {numComments || 0}
       </span>
       <span>
-        <i className="fa fa-retweet"></i>
+        <i className="fa fa-retweet" />
         {numRetweets || 0}
       </span>
       <span>
-        <i className="fas fa-heart"></i>
+        <i className="fas fa-heart" />
         {formatLikes(numLikes ?? 0)}
       </span>
       <span>
-        <i className="fa fa-envelope"></i>
+        <i className="fa fa-envelope" />
       </span>
     </div>
-  )
+  );
 }
